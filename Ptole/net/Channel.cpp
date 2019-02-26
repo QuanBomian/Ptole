@@ -7,7 +7,7 @@ void Channel::enableReading() {
 	update();
 }
 void Channel::update(){
-		loop->updateChannel(this);
+		loop_->updateChannel(this);
 	//struct epoll_event event;
 	//event.data.ptr = this;
 	//event.events = events_;

@@ -7,7 +7,7 @@ namespace Ptole {
 		class Channel {
 		public:
 			using callback = std::function<void()>;
-			Channel(int fd,int epollfd):state_(kNotAdded),fd_(fd),epollfd_(epollfd),events_(0),revents_(0){}
+			Channel(int fd,Loop* loop):loop_(loop),state_(kNotAdded),fd_(fd),events_(0),revents_(0){}
 			void enableReading();
 			void handleEvent();
 			void update();
@@ -26,10 +26,10 @@ namespace Ptole {
 			int fd_;
 			int events_;
 			int revents_;
-			int epollfd_;
+			//int epollfd_;
 			callback readingCallback_;
 			callback writingCallback_;
-			Loop* loop;
+			Loop* loop_;
 		};
 	}
 }
