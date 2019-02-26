@@ -14,19 +14,31 @@ void Epoller::poll(ChannelList* channels) {
 void Epoller::addChannel(Channel* channel) {
 	focusedChannels.insert(channel->fd(), channel);
 	channel->setState(kAdded);
-	updatePoller(EPOLL_CTL_ADD, channle);
+	updatePoller(EPOLL_CTL_ADD, channel);
 }
 void Epoller::removeChannel(Channel* channel) {
-	focusedChannels.erase(channel->fd());
-	channel->setState(kRemoved);
-	updatePoller(EPOLL_CTL_DEL, channle);
+	if (channel->state() == kAdded) {
+		int fd = channel->fd();
+		auto it = focusedChannels_.find(fd);
+		if (it != focusedChannels_.end()) {
+			focusedChannels.erase(fd);
+			channel->setState(kNotAdded);
+			updatePoller(EPOLL_CTL_DEL, channel);
+		}
+	}
 }
 void Epoller::updateChannel(Channel* channel) {
-	auto it = focusedChannels.find(channel->fd());
-	if (it != focusedChannels.end()) {
-		focusedChannels[channel->fd()] = channel;
+	int state = channel->state();
+	if (state == kNotAdded) {
+		addChannel(channel);
 	}
-	updatePoller(EPOLL_CTL_MOD, channle);
+	else if (state = kAdded) {
+		auto it = focusedChannels.find(channel->fd());
+		if (it != focusedChannels.end()) {
+			focusedChannels[channel->fd()] = channel;
+		}
+		updatePoller(EPOLL_CTL_MOD, channel);
+	}
 }
 void Epoller::updatePoller(int epollOp,Channel* channel) {
 	struct epoll_event event;
