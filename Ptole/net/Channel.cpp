@@ -7,10 +7,11 @@ void Channel::enableReading() {
 	update();
 }
 void Channel::update(){
-	struct epoll_event event;
-	event.data.ptr = this;
-	event.events = events_;
-	epoll_ctl(epollfd_, EPOLL_CTL_ADD, fd_, &event);
+		loop->updateChannel(this);
+	//struct epoll_event event;
+	//event.data.ptr = this;
+	//event.events = events_;
+	//epoll_ctl(epollfd_, EPOLL_CTL_ADD, fd_, &event);
 }
 void Channel::handleEvent(){
 	if (revents_ & (EPOLLIN | EPOLLPRI)) {

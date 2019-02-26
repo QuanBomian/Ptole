@@ -1,6 +1,7 @@
 #pragma once
 
 #include<functional>
+#include<Ptole/net/Loop.h>
 namespace Ptole {
 	namespace net {
 		class Channel {
@@ -16,10 +17,11 @@ namespace Ptole {
 				state_ = state;
 			};
 			int fd() { return fd_; }
+			int state() { return state_; }
 		private:
 			static const int kNotAdded = -1;
-			static const int kAdded = 0; //have add to poller
-			static const int kRemoved = 1;
+			//static const int kAdded = 0; //have add to poller
+			//static const int kRemoved = 1;
 			int state_;
 			int fd_;
 			int events_;
@@ -27,6 +29,7 @@ namespace Ptole {
 			int epollfd_;
 			callback readingCallback_;
 			callback writingCallback_;
+			Loop* loop;
 		};
 	}
 }

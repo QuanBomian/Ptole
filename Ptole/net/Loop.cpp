@@ -7,3 +7,6 @@ void Loop::loop() {
 		channels->handleEvent();
 	}
 }
+void Loop::updateChannel(Channel* channel) {
+	poller->updateChannel(channel);
+}
