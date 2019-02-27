@@ -1,20 +1,23 @@
 #pragma once
 #include<vector>
 #include<memory>
-#include<Ptole/net/Channel.h>
-#include<Ptole/net/Epoller.h>
+
 namespace Ptole {
 	namespace net {
+		class Channel;
+		class Epoller;
 		class Loop {
 		public:
-			Loop():poller(new Epoller(this)) {}
+			Loop();
+			~Loop();
 			void loop();
 			void updateChannel(Channel* channel);
 			void addChannel(Channel* channel);
 			void removeChannel(Channel* channel);
 		private:
-			std::vector<Channel> activeChannels_;
-			std::unique_ptr<Epoller> poller;
+			typedef std::vector<Channel*> ChannelList;
+			ChannelList activeChannels_;
+			std::unique_ptr<Epoller> poller_;
 		};
 	}
 }

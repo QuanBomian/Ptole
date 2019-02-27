@@ -3,3 +3,6 @@ target_link_libraries(InetAndSocketTest Ptole_net)
 
 add_executable(ChannelTest ChannelTest.cpp)
 target_link_libraries(ChannelTest Ptole_net)
+
+add_executable(EpollerAndLoopTest EpollerAndLoopTest.cpp)
+target_link_libraries(EpollerAndLoopTest Ptole_net)

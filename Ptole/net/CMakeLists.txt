@@ -4,6 +4,9 @@ SET(NET_SRCS
 	Socket.cpp
 	Channel.cpp
 	TcpServer.cpp
+	Channel.cpp
+	Loop.cpp
+	Epoller.cpp
 )
 
 add_library(Ptole_net ${NET_SRCS})
