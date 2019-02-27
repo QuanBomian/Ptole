@@ -1,7 +1,9 @@
 #include<Ptole/net/Channel.h>
+#include<Ptole/net/Loop.h>
 #include<sys/epoll.h>
 using namespace Ptole::net;
 
+Channel::Channel(int fd,Loop* loop):loop_(loop), state_(kNotAdded), fd_(fd), events_(0), revents_(0){}
 void Channel::enableReading() {
 	events_ |= EPOLLIN;
 	update();

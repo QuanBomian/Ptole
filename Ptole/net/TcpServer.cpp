@@ -1,6 +1,7 @@
 #include <Ptole/net/TcpServer.h>
 #include <Ptole/net/Socket.h>
 #include <Ptole/net/Channel.h>
+#include<Ptole/net/Loop.h>
 
 #include <sys/epoll.h>
 #include <vector>
@@ -18,7 +19,6 @@ int TcpServer::createAndListen() {
 
 void TcpServer::start() {
 	createAndListen();
-	loop_->loop();
 	
 }
 void TcpServer::onConnection() {

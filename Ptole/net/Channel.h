@@ -1,13 +1,14 @@
 #pragma once
 
 #include<functional>
-#include<Ptole/net/Loop.h>
+
 namespace Ptole {
 	namespace net {
+		class Loop;
 		class Channel {
 		public:
 			using callback = std::function<void()>;
-			Channel(int fd,Loop* loop):loop_(loop),state_(kNotAdded),fd_(fd),events_(0),revents_(0){}
+			Channel(int fd, Loop* loop);
 			void enableReading();
 			void handleEvent();
 			void update();
@@ -18,6 +19,7 @@ namespace Ptole {
 			};
 			int fd() { return fd_; }
 			int state() { return state_; }
+			int events() { return events_; }
 		private:
 			static const int kNotAdded = -1;
 			//static const int kAdded = 0; //have add to poller
