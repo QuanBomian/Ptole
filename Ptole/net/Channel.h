@@ -10,9 +10,11 @@ namespace Ptole {
 			using callback = std::function<void()>;
 			Channel(int fd, Loop* loop);
 			void enableReading();
+			void enableWriting();
 			void handleEvent();
 			void update();
 			void setReadingCallback(callback cb) { readingCallback_ = cb; }
+			void setWritingCallvack(callback cb) { writingCallback_ = cb; }
 			void setRevents(int revents) { revents_ = revents; }
 			void setState(int state) {
 				state_ = state;

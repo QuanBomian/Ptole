@@ -8,6 +8,13 @@ void Channel::enableReading() {
 	events_ |= EPOLLIN;
 	update();
 }
+
+void Channel::enableWriting()
+{
+	events_ |= EPOLLOUT;
+	update();
+}
+
 void Channel::update(){
 		loop_->updateChannel(this);
 	//struct epoll_event event;

@@ -15,7 +15,7 @@ namespace Ptole {
 
 		private:
 			static const int kEventListSize = 8;
-			int createAndListen();
+			void createAndListen();
 			void onConnection();
 			InetAddress serverAddress_;
 			Socket listenSocket_;

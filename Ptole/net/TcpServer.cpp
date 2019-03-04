@@ -7,7 +7,7 @@
 #include <vector>
 using namespace Ptole::net;
 
-int TcpServer::createAndListen() {
+void TcpServer::createAndListen() {
 	
 	listenSocket_.bind(serverAddress_);
 	listenSocket_.listen();
@@ -29,6 +29,7 @@ void TcpServer::onConnection() {
 	if (connfd >= 0) {
 		Channel* channel = new Channel(connfd,loop_);
 		channel->enableReading();
+		channel->enableWriting();
 		connNums++;
 		printf("connection number:%d\n", connNums);
 	}
