@@ -33,8 +33,8 @@ namespace Ptole {
 			int events_;
 			int revents_;
 			//int epollfd_;
-			callback readingCallback_;
-			callback writingCallback_;
+			callback readingCallback_{};
+			callback writingCallback_{};
 			Loop* loop_;
 		};
 	}
