@@ -11,10 +11,10 @@ namespace Ptole
 			const char * peek() const;
 			int readableBytes() const;
 			void append(const std::string& data);
-			void retrive(size_t len);
-			void retriveAll();
-			std::string retriveAsString(size_t len);
-			std::string retriveAllAsString();
+			void retrieve(size_t len);
+			void retrieveAll();
+			std::string retrieveAsString(size_t len);
+			std::string retrieveAllAsString();
 
 		private:
 			std::string buffer_;

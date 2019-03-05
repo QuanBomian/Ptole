@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 using namespace Ptole::net;
 
 void socket_util::fromIpPort2Addr(const char* ip, uint16_t port, struct sockaddr_in* addr) {
@@ -27,3 +28,22 @@ void socket_util::fromIpPort2Addr6(const char* ip, uint16_t port, struct sockadd
 		exit(-1);
 	}
 }
+
+ssize_t socket_util::write(int fd,const void* buf, size_t len)
+{
+	return ::write(fd, buf, len);
+}
+
+ssize_t socket_util::read(int fd,void* buf, size_t len)
+{
+	return ::read(fd, buf, len);
+}
+void socket_util::close(int fd)
+{
+	if (::close(fd) < 0)
+	{
+		fprintf(stderr, "close error");
+		exit(-1);
+
+	}
+};

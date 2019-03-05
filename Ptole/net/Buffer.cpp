@@ -16,24 +16,24 @@ void Buffer::append(const std::string& data)
 	buffer_.append(data);
 }
 
-void Buffer::retrive(size_t len)
+void Buffer::retrieve(size_t len)
 {
 	buffer_ = buffer_.substr(len, buffer_.size());
 }
-void Buffer::retriveAll()
+void Buffer::retrieveAll()
 {
-	retrive(readableBytes());
+	retrieve(readableBytes());
 }
 
-std::string Buffer::retriveAsString(size_t len)
+std::string Buffer::retrieveAsString(size_t len)
 {
 	std::string result(peek(), len);
-	retrive(len);
+	retrieve(len);
 	return result;
 }
 
-std::string Buffer::retriveAllAsString()
+std::string Buffer::retrieveAllAsString()
 {
-	return retriveAsString(readableBytes());
+	return retrieveAsString(readableBytes());
 }
 

@@ -40,10 +40,11 @@ int Socket::accept(InetAddress & peerAddress) {
 void Socket::listen() {
 	int ret = ::listen(fd_,SOMAXCONN);
 	if(ret < 0) {
-		fprintf(stderr," ");
+		fprintf(stderr," listen error");
 		exit(-1);
 	}
 }
+
 void Socket::enableReuseAddr() {
 	int reuse = 1;
 	setsockopt(fd_, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));

@@ -11,6 +11,8 @@ namespace Ptole {
 			Channel(int fd, Loop* loop);
 			void enableReading();
 			void enableWriting();
+			void disableReading();
+			void disableWriting();
 			void handleEvent();
 			void update();
 			void setReadingCallback(callback cb) { readingCallback_ = cb; }

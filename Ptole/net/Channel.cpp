@@ -15,6 +15,16 @@ void Channel::enableWriting()
 	update();
 }
 
+void Channel::disableReading()
+{
+	events_ &= !EPOLLIN;
+}
+
+void Channel::disableWriting()
+{
+	events_ &= !EPOLLOUT;
+}
+
 void Channel::update(){
 		loop_->updateChannel(this);
 	//struct epoll_event event;
