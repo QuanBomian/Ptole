@@ -14,6 +14,7 @@ namespace Ptole {
 			void updateChannel(Channel* channel);
 			void addChannel(Channel* channel);
 			void removeChannel(Channel* channel);
+			void quit(){}
 		private:
 			typedef std::vector<Channel*> ChannelList;
 			ChannelList activeChannels_;

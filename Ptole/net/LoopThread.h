@@ -7,15 +7,19 @@ namespace Ptole
 {
 	namespace net
 	{
+		class Loop;
 		class LoopThread
 		{
 		private:
 			Thread thread_;
 			MutexLock mutexLock_;
-			Condition condition;
+			Condition condition_;
+			Loop* loop_;
 		public:
 			LoopThread();
 			~LoopThread();
+			Loop* getLoop();
+			void ThreadFunc();
 		};
 		
 	}

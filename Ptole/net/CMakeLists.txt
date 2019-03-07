@@ -9,6 +9,8 @@ SET(NET_SRCS
 	Epoller.cpp
 	Buffer.cpp
 	Connection.cpp
+	LoopThread.cpp
+	LoopThreadPool.cpp
 )
 
 add_library(Ptole_net ${NET_SRCS})

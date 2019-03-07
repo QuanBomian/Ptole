@@ -11,7 +11,7 @@ namespace Ptole
 			MutexLock& mutexLock_;
 			pthread_cond_t condition_;
 		public:
-			Condition(MutexLock mutexLock) :mutexLock_(mutexLock)
+			Condition(MutexLock& mutexLock) :mutexLock_(mutexLock)
 			{
 				pthread_cond_init(&condition_, nullptr);
 			}
